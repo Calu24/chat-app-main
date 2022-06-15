@@ -14,7 +14,7 @@ class LoadingPage extends StatelessWidget {
       body: FutureBuilder(
           future: checkLoadingState(context),
           builder: (context, snapshot) {
-            return const Center(child: Text('Loading...'));
+            return const Center(child: CircularProgressIndicator());
           }),
     );
   }
