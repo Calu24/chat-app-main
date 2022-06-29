@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:chatear_app/helpers/preferences.dart';
+
 import 'package:chatear_app/services/auth.dart';
 import 'package:chatear_app/services/chat_service.dart';
 import 'package:chatear_app/services/socket_service.dart';
@@ -8,7 +10,14 @@ import 'package:chatear_app/services/socket_service.dart';
 import 'package:chatear_app/routes/routes.dart';
 
 
-void main() => runApp(MyApp());
+void main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Preferences.init();
+
+  runApp(MyApp());
+}
 
 // ignore: use_key_in_widget_constructors
 class MyApp extends StatelessWidget {
