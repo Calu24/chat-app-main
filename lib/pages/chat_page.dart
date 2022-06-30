@@ -49,20 +49,24 @@ class _ChatPageState extends State<ChatPage> with TickerProviderStateMixin{
 
   void _loadChatHistoryPreferences(String userId){
 
+    const emptyJson = '';
+
     Preferences.keyPrefs = userId;
 
-    List<Chat> chats = chatFromJson(Preferences.chatMessageJson);
+    if (Preferences.chatMessageJson != emptyJson) {      
 
-    final history = chats.map((c) => ChatMessage(
-      text: c.text,
-      uid: c.uid, 
-      animationController: AnimationController(vsync: this, duration: const Duration(milliseconds: 0))..forward()
-    ));
+      List<Chat> chats = chatFromJson(Preferences.chatMessageJson);
 
-    setState(() {
-      _messages.insertAll(0, history);
-    });
+      final history = chats.map((c) => ChatMessage(
+        text: c.text,
+        uid: c.uid, 
+        animationController: AnimationController(vsync: this, duration: const Duration(milliseconds: 0))..forward()
+      ));
 
+      setState(() {
+        _messages.insertAll(0, history);
+      });
+    }
   }
 
   void _loadChatHistory(String userId) async{
