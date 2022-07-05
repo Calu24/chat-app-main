@@ -1,3 +1,4 @@
+import 'package:chatear_app/global/constants.dart';
 import 'package:flutter/material.dart';
 
 class ElevatedBtnBlue extends StatelessWidget {
@@ -15,7 +16,7 @@ class ElevatedBtnBlue extends StatelessWidget {
     return ElevatedButton(
         style: ButtonStyle(
           elevation: MaterialStateProperty.all(2),
-          backgroundColor: MaterialStateProperty.all(Colors.blue),
+          backgroundColor: MaterialStateProperty.all(customOrange),
           shape: MaterialStateProperty.all(const StadiumBorder()),
         ),
         onPressed: onPressed,

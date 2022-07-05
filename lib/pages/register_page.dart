@@ -26,6 +26,7 @@ class RegisterPage extends StatelessWidget {
                 children: [
                   const Logo(
                     title: 'Check in',
+                    subTitle: '',
                   ),
                   _Form(),
                   const Labels(

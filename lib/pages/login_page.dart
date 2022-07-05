@@ -11,13 +11,15 @@ import 'package:chatear_app/widgets/custom_input.dart';
 import 'package:chatear_app/widgets/custom_logo.dart';
 import 'package:chatear_app/widgets/labels.dart';
 
+import 'package:chatear_app/global/constants.dart';
+
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color(0xffF2F2F2),
+        backgroundColor: backgroundColor,
         body: SafeArea(
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
@@ -26,13 +28,10 @@ class LoginPage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Logo(title: 'Messenger',),
+                  const Logo(title: 'Welcome,', subTitle: 'sign in to continue',),
                   _Form(),
-                  const Labels(route: 'register', title: '¿No tienes cuenta?', buttonTxt: 'Crea una ahora!'),
-                  const Text(
-                    'Términos y condiciones de uso',
-                    style: TextStyle(fontWeight: FontWeight.w200),
-                  )
+                  const Labels(route: 'register', title: 'New Member?', buttonTxt: 'Sign Up Now!'),
+                  const SizedBox(height: 5)
                 ],
               ),
             ),
@@ -75,7 +74,7 @@ class __FormState extends State<_Form> {
             textController: passCtrl,
             isPassword: true,
           ),
-          ElevatedBtnBlue(btnName: 'Log in', onPressed: authService.authenticating ? null : () async{
+          ElevatedBtnBlue(btnName: 'Sign in', onPressed: authService.authenticating ? null : () async{
 
             FocusScope.of(context).unfocus();
 

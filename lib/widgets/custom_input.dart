@@ -1,3 +1,4 @@
+import 'package:chatear_app/global/constants.dart';
 import 'package:flutter/material.dart';
 
 class CustomInput extends StatelessWidget {
@@ -23,24 +24,22 @@ class CustomInput extends StatelessWidget {
         padding: const EdgeInsets.only(top: 5, left: 5, bottom: 5, right: 20),
         margin: const EdgeInsets.only(bottom: 20),
         decoration: BoxDecoration(
-            color: Colors.white,
+            border: Border.all(color: customOrange, width: 0.5),
             borderRadius: BorderRadius.circular(30),
-            boxShadow: [
-              BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
-                  offset: const Offset(0, 5),
-                  blurRadius: 5)
-            ]),
+            ),
         child: TextField(
+          style: const TextStyle(color: Colors.white),
+          cursorColor: Colors.white,
           controller: textController,
           autocorrect: false,
           keyboardType: keyboardType,
           obscureText: isPassword,
           decoration: InputDecoration(
-            prefixIcon: Icon(icon),
+            prefixIcon: Icon(icon, color: Colors.grey),
             focusedBorder: InputBorder.none,
             border: InputBorder.none,
             hintText: placeHolder,
+            hintStyle: const TextStyle(color: Colors.grey)
           ),
         ));
   }

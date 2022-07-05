@@ -1,3 +1,4 @@
+import 'package:chatear_app/global/constants.dart';
 import 'package:flutter/material.dart';
 
 class Labels extends StatelessWidget {
@@ -18,16 +19,16 @@ class Labels extends StatelessWidget {
       children: [
         Text(title,
             style: const TextStyle(
-                color: Colors.black54,
+                color: Colors.white,
                 fontSize: 15,
                 fontWeight: FontWeight.w300)),
         const SizedBox(height: 10),
         GestureDetector(
           child: Text(buttonTxt,
-              style: TextStyle(
-                  color: Colors.blue[600], fontWeight: FontWeight.bold)),
+              style: const TextStyle(fontSize: 16,
+                  color: customOrange, fontWeight: FontWeight.bold)),
           onTap: () {
-            Navigator.pushReplacementNamed(context, route);
+            // Navigator.pushReplacementNamed(context, route);
           },
         ),
       ],
