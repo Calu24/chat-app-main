@@ -1,12 +1,12 @@
 import 'package:chatear_app/global/constants.dart';
 import 'package:flutter/material.dart';
 
-class Labels extends StatelessWidget {
+class CustomLabels extends StatelessWidget {
   final String route;
   final String title;
   final String buttonTxt;
 
-  const Labels({
+  const CustomLabels({
     Key? key,
     required this.route,
     required this.title,

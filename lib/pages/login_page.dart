@@ -28,9 +28,9 @@ class LoginPage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Logo(title: 'Welcome,', subTitle: 'sign in to continue',),
+                  const CustomLogo(title: 'Welcome,', subTitle: 'sign in to continue',),
                   _Form(),
-                  const Labels(route: 'register', title: 'New Member?', buttonTxt: 'Sign Up Now!'),
+                  const CustomLabels(route: 'register', title: 'New Member?', buttonTxt: 'Sign Up Now!'),
                   const SizedBox(height: 5)
                 ],
               ),
@@ -74,7 +74,7 @@ class __FormState extends State<_Form> {
             textController: passCtrl,
             isPassword: true,
           ),
-          ElevatedBtnBlue(btnName: 'Sign in', onPressed: authService.authenticating ? null : () async{
+          CustomElevatedBtnBlue(btnName: 'Sign in', onPressed: authService.authenticating ? null : () async{
 
             FocusScope.of(context).unfocus();
 

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class Logo extends StatelessWidget {
+class CustomLogo extends StatelessWidget {
   
   final String title;
   final String subTitle;
   
-  const Logo({
+  const CustomLogo({
     Key? key,
     required this.title,
     required this.subTitle,

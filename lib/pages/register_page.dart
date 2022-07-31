@@ -24,12 +24,12 @@ class RegisterPage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Logo(
+                  const CustomLogo(
                     title: 'Check in',
                     subTitle: '',
                   ),
                   _Form(),
-                  const Labels(
+                  const CustomLabels(
                       route: 'Create Account',
                       title: '¿Ya tienes cuenta?',
                       buttonTxt: 'Ingrese ahora!'),
@@ -83,7 +83,7 @@ class __FormState extends State<_Form> {
             textController: passCtrl,
             isPassword: true,
           ),
-          ElevatedBtnBlue(
+          CustomElevatedBtnBlue(
               btnName: 'Log in',
               onPressed: authService.authenticating ? null : () async {
                 final registerOk = await authService.register(nameCtrl.text, emailCtrl.text, passCtrl.text);

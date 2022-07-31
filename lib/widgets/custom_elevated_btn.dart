@@ -1,11 +1,11 @@
 import 'package:chatear_app/global/constants.dart';
 import 'package:flutter/material.dart';
 
-class ElevatedBtnBlue extends StatelessWidget {
+class CustomElevatedBtnBlue extends StatelessWidget {
   final String btnName;
   final Function()? onPressed;
 
-  const ElevatedBtnBlue({
+  const CustomElevatedBtnBlue({
     Key? key,
     required this.btnName,
     this.onPressed,
