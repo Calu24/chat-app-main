@@ -51,6 +51,7 @@ class _UsersPageState extends State<UsersPage> {
           extendBodyBehindAppBar: true, //hace que el appbar no moleste y deje que el comportamiento del body ocupe toda la pantalla
           bottomNavigationBar: const CustomBottomNavBar(),
           appBar: AppBar(
+            toolbarHeight: 65,
             actions: [
               Container(
                 margin: const EdgeInsets.only(right: 10),
@@ -69,7 +70,7 @@ class _UsersPageState extends State<UsersPage> {
               children: [
                 _leadingAvatar(user),
                 const SizedBox(width: 15),
-                const Text('Chats')
+                const Text('Chats', style: TextStyle(fontWeight: FontWeight.bold),)
               ],
             ),
             elevation: 0,
@@ -208,10 +209,17 @@ class _UsersPageState extends State<UsersPage> {
         borderRadius: BorderRadius.circular(30),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.2),
-            spreadRadius: 1,
-            blurRadius: 1,
-            offset: const Offset(3, 3),
+            blurStyle: BlurStyle.outer,
+            color: Colors.white.withOpacity(0.6),
+            spreadRadius: 2,
+            blurRadius: 4,
+            offset: const Offset(1, 3),
+          ),
+          const BoxShadow(
+            color: Colors.black,
+            spreadRadius: 3,
+            blurRadius: 5,
+            offset: Offset(2, 4),
           ),
         ]
       ),

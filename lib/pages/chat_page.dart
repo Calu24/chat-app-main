@@ -1,3 +1,4 @@
+import 'package:chatear_app/global/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -122,71 +123,148 @@ class _ChatPageState extends State<ChatPage> with TickerProviderStateMixin{
     final userDestination = chatService.userDestination;
 
     return Scaffold(
+      extendBodyBehindAppBar: true, //hace que el appbar no moleste y deje que el comportamiento del body ocupe toda la pantalla
       appBar: AppBar(
+        automaticallyImplyLeading: false,
+        toolbarHeight: 70,
         centerTitle: true,
-        backgroundColor: Colors.grey.shade200,
-        elevation: 1,
-        title: Column(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            CircleAvatar(
-              child: Text(userDestination.name.substring(0,2), style: const TextStyle(fontSize: 12)),
-              backgroundColor: Colors.blue[100],
-              maxRadius: 14,
+            _avatar(IconButton(
+              splashRadius: 0.1,
+              onPressed: () => Navigator.pop(context), 
+              icon: const Icon(Icons.arrow_back, color: customOrange)
+            )),
+            _avatar(
+              Text(userDestination.name.substring(0, 2), style: const TextStyle(color: Colors.white60),)
             ),
-            const SizedBox(height: 3),
-            Text(userDestination.name,
-                style: const TextStyle(color: Colors.black87, fontSize: 12))
+            Text(userDestination.name, style: const TextStyle(fontWeight: FontWeight.bold)),
+            const SizedBox(width: 40),
+            // const SizedBox(width: 1),
+            // const SizedBox(width: 1),
+            _avatar(const Icon(Icons.call, color: customOrange)),
           ],
         ),
       ),
-      body: Column(
-        children: [
-          Flexible(
-            child: ListView.builder(
-                physics: const BouncingScrollPhysics(),
-                reverse: true,
-                itemCount: _messages.length,
-                itemBuilder: (_, i) => _messages[i]),
-          ),
-          const Divider(height: 1),
-          Container(
-            color: Colors.white,
-            child: _inputChat(),
-          )
-        ],
+      body: Container(
+        padding: const EdgeInsets.only(top: 50),
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+              Color.fromRGBO(60, 64, 73, 1),
+              Color.fromRGBO(25, 28, 37, 1),
+            ])),
+        child: Column(
+          children: [
+            const SizedBox(height: 70),
+            Flexible(
+              child: ListView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  reverse: true,
+                  itemCount: _messages.length,
+                  itemBuilder: (_, i) => _messages[i]),
+            ),
+            _inputChat()
+          ],
+        ),
       ),
     );
   }
 
   Widget _inputChat() {
-    return SafeArea(
-        child: Container(
-      margin: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: Row(children: [Flexible(child: TextField(
-        textCapitalization: TextCapitalization.sentences,
-        controller: _textController,
-        decoration: const InputDecoration.collapsed(hintText: 'Send message'),
-        focusNode: _focusNode,
-        onSubmitted: (_){},
-        onChanged: (String text){
-          setState(() {
-            if (text.trim().isNotEmpty) {
-              _isWriting = true;
-            }else{
-              _isWriting = false;
-            }
-          });
-        },
-      )),
-      Container(
-        margin: const EdgeInsets.symmetric(horizontal: 4.0),
-        child: CupertinoButton(
-          child: const Text('Send'),
-          onPressed: _isWriting ? ()=> _handleSubmit(_textController.text.trim()) : null ,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10, top: 10),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.black,
+          borderRadius: BorderRadius.circular(30),
+          boxShadow: [
+            BoxShadow(
+              blurStyle: BlurStyle.outer,
+              color: Colors.white.withOpacity(0.2),
+              spreadRadius: 2,
+              blurRadius: 4,
+            ),
+            BoxShadow(
+              color: Colors.black.withOpacity(0.25),
+              spreadRadius: 3,
+              blurRadius: 5,
+              offset: const Offset(3, 5),
+            ),
+          ]
         ),
-      )
-      ],),
-    ));
+        margin: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: Row(children: [Flexible(child: Padding(
+          padding: const EdgeInsets.only(left: 20),
+          child: TextField(
+            cursorColor: customOrange,
+            textCapitalization: TextCapitalization.sentences,
+            controller: _textController,
+            decoration: const InputDecoration.collapsed(hintText: 'Send message', hintStyle: TextStyle(color: Colors.grey)),
+            style: const TextStyle( color: Colors.white, fontSize: 15),
+            focusNode: _focusNode,
+            onSubmitted: (_){},
+            onChanged: (String text){
+              setState(() {
+                if (text.trim().isNotEmpty) {
+                  _isWriting = true;
+                }else{
+                  _isWriting = false;
+                }
+              });
+            },
+          ),
+        )),
+        Container(
+          margin: const EdgeInsets.symmetric(horizontal: 5.0),
+          child: CupertinoButton(
+            child: const Text('Send', style: TextStyle(color: customOrange)),
+            onPressed: _isWriting ? ()=> _handleSubmit(_textController.text.trim()) : null ,
+          ),
+        )
+        ],),
+      ),
+    )
+    ;
+  }
+
+  Container _avatar(Widget child) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Color.fromRGBO(60, 64, 73, 1),
+            Color.fromRGBO(25, 28, 37, 1),]
+        ),
+        borderRadius: BorderRadius.circular(30),
+        boxShadow: [
+          BoxShadow(
+            blurStyle: BlurStyle.outer,
+            color: Colors.white.withOpacity(0.6),
+            spreadRadius: 2,
+            blurRadius: 4,
+            offset: const Offset(1, 3),
+          ),
+          const BoxShadow(
+            color: Colors.black,
+            spreadRadius: 3,
+            blurRadius: 5,
+            offset: Offset(3, 5),
+          ),
+        ]
+      ),
+      child: CircleAvatar(
+        child: child,
+        backgroundColor: Colors.black12,
+      ),
+    );
   }
 
   _handleSubmit(String text) {
